@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1>Customers</h1>
-    <a href="{{ route('customers.create') }}" class="btn btn-primary mb-3">Add Customer</a>
+    <center><h1>Clientes</h1></center>
+    <a href="{{ route('customers.create') }}" class="btn btn-primary mb-3" style="background:black; color:white;">Añadir Cliente</a>
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -13,10 +13,10 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Nombre</th>
                 <th>Email</th>
-                <th>Phone</th>
-                <th>Actions</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -27,11 +27,11 @@
                     <td>{{ $customer->email }}</td>
                     <td>{{ $customer->phone }}</td>
                     <td>
-                        <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-warning btn-sm">Editar</a>
                         <form action="{{ route('customers.destroy', $customer->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                         </form>
                     </td>
                 </tr>

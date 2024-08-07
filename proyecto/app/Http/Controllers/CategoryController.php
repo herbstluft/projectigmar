@@ -100,10 +100,19 @@ class CategoryController extends Controller
      * @param  Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
+        $category = Category::findOrFail($id);
+
+        // Verificar si la categoría tiene productos asociados
+        if ($category->products()->count() > 0) {
+            return redirect()->route('categories.index')->with('warning', 'No se puede eliminar la categoría porque tiene productos asociados.');
+        }
+
+        // Eliminar la categoría
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
+        return redirect()->route('categories.index')->with('success', 'Categoría eliminada con éxito.');
     }
+    
 }
